@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Task Maneger</string>
+    <string name="title">Title Goes Here</string>
+    <string name="description">Description</string>
+    <string name="dueDate">12/05/2026</string>
+    <string name="leftDays">3 days left</string>
+</resources>

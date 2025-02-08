@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/completeTask"
+        android:icon="@drawable/complete_task"
+        android:title="complete task"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu"
+        android:icon="@drawable/three_dots"
+        android:title="menu"
+        app:showAsAction="ifRoom">
+
+        <menu>
+            <item
+                android:id="@+id/sort_by_title"
+                android:title="Sort by Title" />
+
+            <item
+                android:id="@+id/sort_by_due_date"
+                android:title="Sort by Due Date" />
+        </menu>
+    </item>
+
+</menu>

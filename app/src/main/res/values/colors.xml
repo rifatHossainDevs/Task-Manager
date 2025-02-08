@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <!-- Primary Colors -->
+    <color name="primary_red">#FFF44336</color>
+    <color name="primary_pink">#FFE91E63</color>
+    <color name="primary_purple">#FF9C27B0</color>
+    <color name="primary_deep_purple">#FF673AB7</color>
+    <color name="primary_indigo">#FF3F51B5</color>
+    <color name="primary_blue">#FF2196F3</color>
+    <color name="primary_light_blue">#FF03A9F4</color>
+    <color name="primary_cyan">#FF00BCD4</color>
+    <color name="primary_teal">#FF009688</color>
+    <color name="primary_green">#FF4CAF50</color>
+    <color name="primary_light_green">#FF8BC34A</color>
+    <color name="primary_lime">#FFCDDC39</color>
+    <color name="primary_yellow">#FFFFEB3B</color>
+    <color name="primary_amber">#FFFFC107</color>
+    <color name="primary_orange">#FFFF9800</color>
+    <color name="primary_deep_orange">#FFFF5722</color>
+    <color name="primary_brown">#FF795548</color>
+    <color name="primary_gray">#FF9E9E9E</color>
+    <color name="primary_blue_gray">#FF607D8B</color>
+
+    <!-- Light Shades -->
+    <color name="light_red">#FFFFCDD2</color>
+    <color name="light_pink">#FFF8BBD0</color>
+    <color name="light_purple">#FFE1BEE7</color>
+    <color name="light_deep_purple">#FFD1C4E9</color>
+    <color name="light_indigo">#FFC5CAE9</color>
+    <color name="light_blue">#FFBBDEFB</color>
+    <color name="light_light_blue">#FFB3E5FC</color>
+    <color name="light_cyan">#FFB2EBF2</color>
+    <color name="light_teal">#FFB2DFDB</color>
+    <color name="light_green">#FFC8E6C9</color>
+    <color name="light_light_green">#FFDCEDC8</color>
+    <color name="light_lime">#FFF0F4C3</color>
+    <color name="light_yellow">#FFFFF9C4</color>
+    <color name="light_amber">#FFFFECB3</color>
+    <color name="light_orange">#FFFFE0B2</color>
+    <color name="light_deep_orange">#FFFFCCBC</color>
+    <color name="light_brown">#FFD7CCC8</color>
+    <color name="light_gray">#FFE0E0E0</color>
+    <color name="light_blue_gray">#FFCFD8DC</color>
+
+    <!-- Dark Shades -->
+    <color name="dark_red">#FFD32F2F</color>
+    <color name="dark_pink">#FFC2185B</color>
+    <color name="dark_purple">#FF7B1FA2</color>
+    <color name="dark_deep_purple">#FF512DA8</color>
+    <color name="dark_indigo">#FF303F9F</color>
+    <color name="dark_blue">#FF1976D2</color>
+    <color name="dark_light_blue">#FF0288D1</color>
+    <color name="dark_cyan">#FF0097A7</color>
+    <color name="dark_teal">#FF00796B</color>
+    <color name="dark_green">#FF388E3C</color>
+    <color name="dark_light_green">#FF689F38</color>
+    <color name="dark_lime">#FFAFB42B</color>
+    <color name="dark_yellow">#FFFBC02D</color>
+    <color name="dark_amber">#FFFFA000</color>
+    <color name="dark_orange">#FFF57C00</color>
+    <color name="dark_deep_orange">#FFE64A19</color>
+    <color name="dark_brown">#FF5D4037</color>
+    <color name="dark_gray">#FF616161</color>
+    <color name="dark_blue_gray">#FF455A64</color>
+
+    <!-- Neutral Colors -->
+    <color name="neutral_black">#FF000000</color>
+    <color name="neutral_white">#FFFFFFFF</color>
+    <color name="neutral_light_gray">#FFBDBDBD</color>
+    <color name="neutral_gray">#FF9E9E9E</color>
+    <color name="neutral_dark_gray">#FF616161</color>
+    <color name="neutral_soft_white">#FFFAFAFA</color>
+
+    <!-- Additional Accent Colors -->
+    <color name="accent_sky_blue">#FF81D4FA</color>
+    <color name="accent_mint_green">#FFA7FFEB</color>
+    <color name="accent_peach">#FFFFD1C1</color>
+    <color name="accent_sunflower">#FFFFF59D</color>
+    <color name="accent_cherry_red">#FFD50000</color>
+</resources>
