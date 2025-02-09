@@ -1,5 +1,6 @@
 package com.devile.taskmaneger
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -33,6 +34,11 @@ class MainActivity : AppCompatActivity() {
 
         setHomePage()
         fetchTaskList()
+
+        binding.btnAddUser.setOnClickListener {
+            val addActivityIntent = Intent(this@MainActivity, AddActivity::class.java)
+            startActivity(addActivityIntent)
+        }
     }
 
     private fun fetchTaskList() {
