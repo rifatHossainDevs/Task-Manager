@@ -4,4 +4,10 @@
     <string name="description">Description</string>
     <string name="dueDate">12/05/2026</string>
     <string name="leftDays">3 days left</string>
+    <string name="enter_task_here">Enter Task Here</string>
+    <string name="what_is_to_be_done">What is to be done?</string>
+    <string name="description1">Description</string>
+    <string name="due_date">Due Date</string>
+    <string name="date_not_set">Date not set</string>
+    <string name="enter_description">Enter Description</string>
 </resources>
