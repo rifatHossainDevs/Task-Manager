@@ -79,4 +79,7 @@
     <color name="accent_peach">#FFFFD1C1</color>
     <color name="accent_sunflower">#FFFFF59D</color>
     <color name="accent_cherry_red">#FFD50000</color>
+    <color name="checkbox">#003865</color>
+
+
 </resources>

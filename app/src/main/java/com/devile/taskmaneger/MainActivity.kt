@@ -1,5 +1,6 @@
 package com.devile.taskmaneger
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.devile.taskmaneger.data.Task
@@ -22,7 +24,6 @@ class MainActivity : AppCompatActivity(), Adapter.HandleClickListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var taskDao: TaskDao
     private lateinit var adapter: Adapter
-    private lateinit var completeTaskList: MutableList<Task>
     private lateinit var taskList: MutableList<Task>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +41,9 @@ class MainActivity : AppCompatActivity(), Adapter.HandleClickListener {
 
         taskList = mutableListOf()
         adapter = Adapter(taskList, this)
+        binding.rvLayout.layoutManager = LinearLayoutManager(this)  // Set layout manager
         binding.rvLayout.adapter = adapter
+
         fetchTasks()
 
         binding.btnAddUser.setOnClickListener {
@@ -48,7 +51,27 @@ class MainActivity : AppCompatActivity(), Adapter.HandleClickListener {
             startActivity(addActivityIntent)
         }
 
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                return true
+            }
+        })
+
         setSupportActionBar(binding.toolbar)
+    }
+
+    fun filterList(query: String?) {
+        if (query != null) {
+            val filteredList = taskList.filter {
+                it.title.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT))
+            }
+            adapter.setFilteredList(filteredList)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -60,56 +83,51 @@ class MainActivity : AppCompatActivity(), Adapter.HandleClickListener {
         return when (item.itemId) {
             R.id.completeTask -> {
                 val completeIntent = Intent(this@MainActivity, CompleteActivity::class.java)
-                completeIntent.putParcelableArrayListExtra(
-                    "completeTask",
-                    ArrayList(completeTaskList)
-                )
                 startActivity(completeIntent)
                 true
             }
+
             R.id.sort_by_due_date -> {
                 sortTasksByDueDate()  // Sort by Due Date when selected
                 true
             }
+
             R.id.sort_by_title -> {
                 sortTasksByTitle()  // Sort by Title when selected
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     private fun fetchTasks() {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // Ensure correct format
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
-        taskList = taskDao.getAllTask().toMutableList()
-        completeTaskList = taskList.filter { it.completionStatus }.toMutableList()
+        taskList = taskDao.getUnCompleteTask().toMutableList()
 
         // Sort tasks by due date
         taskList.sortWith(compareBy { task ->
             try {
-                dateFormat.parse(task.dueDate) // Parse the stored format
+                dateFormat.parse(task.dueDate)
             } catch (e: ParseException) {
-                null // Ignore invalid dates
+                null
             }
         })
 
         adapter.updateData(taskList)
     }
 
-
-
     private fun sortTasksByDueDate() {
-        val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())  // Use this format to parse date
+        val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
 
-        // Sort the task list by due date, handle possible parsing errors
         try {
             taskList.sortBy { task ->
                 try {
-                    format.parse(task.dueDate)  // Parse the due date
+                    format.parse(task.dueDate)
                 } catch (e: Exception) {
                     Log.e("MainActivity", "Error parsing date: ${task.dueDate}", e)
-                    null  // Return null if parsing fails
+                    null
                 }
             }
         } catch (e: Exception) {
@@ -120,21 +138,14 @@ class MainActivity : AppCompatActivity(), Adapter.HandleClickListener {
     }
 
     private fun sortTasksByTitle() {
-        taskList.sortBy { it.title }  // Sort tasks by title
+        taskList.sortBy { it.title }
         adapter.updateData(taskList)
-    }
-
-    private fun setHomePage() {
-        adapter = Adapter(taskList, this)
-        binding.rvLayout.layoutManager = LinearLayoutManager(this)
-        binding.rvLayout.adapter = adapter
     }
 
     override fun deleteClickListener(task: Task) {
         taskDao.deleteTask(task)
         Toast.makeText(this, "Task Deleted Successfully", Toast.LENGTH_SHORT).show()
         fetchTasks()
-        setHomePage()
     }
 
     override fun editClickListener(task: Task) {
@@ -143,10 +154,22 @@ class MainActivity : AppCompatActivity(), Adapter.HandleClickListener {
         startActivity(editIntent)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun completeClickListener(task: Task, isComplete: Boolean) {
         taskDao.updateCompleteStatus(task.taskId, isComplete)
         fetchTasks()
-        setHomePage()
-        Toast.makeText(this, "Task Completed", Toast.LENGTH_SHORT).show()
+        adapter.notifyDataSetChanged()
+
+        Toast.makeText(
+            this,
+            if (isComplete) "Task Completed" else "Task Marked as Incomplete",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    // ✅ Refresh task list when returning from another screen
+    override fun onResume() {
+        super.onResume()
+        fetchTasks()  // Reload tasks on returning to MainActivity
     }
 }

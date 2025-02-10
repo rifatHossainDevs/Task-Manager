@@ -10,4 +10,5 @@
     <string name="due_date">Due Date</string>
     <string name="date_not_set">Date not set</string>
     <string name="enter_description">Enter Description</string>
+    <string name="new_task">New Task</string>
 </resources>

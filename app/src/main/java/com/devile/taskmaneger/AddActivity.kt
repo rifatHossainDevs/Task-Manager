@@ -3,6 +3,7 @@ package com.devile.taskmaneger
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
@@ -74,7 +75,10 @@ class AddActivity : AppCompatActivity() {
         binding.etDueDate.setOnClickListener {
             showDatePicker()
         }
-
+        binding.btnBack.setOnClickListener {
+            val mainActivityIntent = Intent(this@AddActivity, MainActivity::class.java)
+            startActivity(mainActivityIntent)
+        }
 
     }
 
@@ -96,8 +100,12 @@ class AddActivity : AppCompatActivity() {
 
     private fun formatDate(date: String): String {
         return try {
-            val inputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) // The format you are displaying
-            val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // Standard format for storing in DB
+            val inputFormat =
+                SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) // The format you are displaying
+            val outputFormat = SimpleDateFormat(
+                "yyyy-MM-dd",
+                Locale.getDefault()
+            ) // Standard format for storing in DB
             val parsedDate = inputFormat.parse(date)
             outputFormat.format(parsedDate ?: Date()) // Format to the new format
         } catch (e: Exception) {
@@ -114,7 +122,8 @@ class AddActivity : AppCompatActivity() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
-            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // Store in yyyy-MM-dd format
+            val sdf =
+                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // Store in yyyy-MM-dd format
             calendar.set(selectedYear, selectedMonth, selectedDay)
             selectedDate = sdf.format(calendar.time)
             binding.etDueDate.setText(selectedDate)

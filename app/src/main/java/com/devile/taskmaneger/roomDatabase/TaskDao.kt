@@ -22,6 +22,9 @@ interface TaskDao {
     fun updateTask(task: Task)
 
 
+    @Query("SELECT * FROM Task WHERE completionStatus = 0")
+    fun getUnCompleteTask(): MutableList<Task>
+
     @Query("SELECT * FROM Task WHERE completionStatus = 1")
     fun getCompleteTask(): MutableList<Task>
 

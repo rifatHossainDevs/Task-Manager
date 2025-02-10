@@ -6,12 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.devile.taskmaneger.data.Task
 import com.devile.taskmaneger.databinding.TaskLayoutBinding
-import kotlin.math.tan
 
-class Adapter(private var task: MutableList<Task>, val listener: HandleClickListener) :
+class Adapter(private var taskList: MutableList<Task>, val listener: HandleClickListener) :
     RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     class ViewHolder(val binding: TaskLayoutBinding) : RecyclerView.ViewHolder(binding.root)
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setFilteredList(tasks: List<Task>) {
+        this.taskList = tasks.toMutableList()
+        notifyDataSetChanged()
+    }
 
     interface HandleClickListener {
         fun editClickListener(task: Task)
@@ -29,14 +34,17 @@ class Adapter(private var task: MutableList<Task>, val listener: HandleClickList
         )
     }
 
-    override fun getItemCount() = task.size
+    override fun getItemCount() = taskList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val task = task[position]
+        val task = taskList[position]
         holder.binding.apply {
             tvTitle.text = task.title
             tvDescription.text = task.description
             tvDueDate.text = task.dueDate
+
+            // Display days left in RecyclerView
+            tvLeftDate.text = task.daysLeft()
 
             deleteBtn.setOnClickListener {
                 listener.deleteClickListener(task)
@@ -46,18 +54,20 @@ class Adapter(private var task: MutableList<Task>, val listener: HandleClickList
                 listener.editClickListener(task)
             }
 
-            completionCB.setOnClickListener {
-                val newCompleteStatus = !task.completionStatus
-                listener.completeClickListener(task, newCompleteStatus)
+            // Prevent unwanted event triggers
+            completionCB.setOnCheckedChangeListener(null)
+            completionCB.isChecked = task.completionStatus
+
+            completionCB.setOnCheckedChangeListener { _, isChecked ->
+                listener.completeClickListener(task, isChecked)
             }
         }
-
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateData(newList: List<Task>) {
-        task.clear()
-        task.addAll(newList)
-        notifyDataSetChanged() // Refresh UI
+        taskList.clear()
+        taskList.addAll(newList)
+        notifyDataSetChanged()
     }
 }
