@@ -1,16 +1,12 @@
-package com.devile.taskmaneger
+package com.devile.taskmaneger.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.devile.taskmaneger.data.Task
-import com.devile.taskmaneger.databinding.ActivityAddBinding
 import com.devile.taskmaneger.databinding.ActivityCompleteBinding
 import com.devile.taskmaneger.recyclerView.Adapter
 import com.devile.taskmaneger.roomDatabase.TaskDao

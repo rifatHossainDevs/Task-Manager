@@ -1,4 +1,4 @@
-package com.devile.taskmaneger
+package com.devile.taskmaneger.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
+import com.devile.taskmaneger.R
 import com.devile.taskmaneger.data.Task
 import com.devile.taskmaneger.databinding.ActivityMainBinding
 import com.devile.taskmaneger.recyclerView.Adapter

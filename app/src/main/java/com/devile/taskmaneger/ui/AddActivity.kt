@@ -1,9 +1,8 @@
-package com.devile.taskmaneger
+package com.devile.taskmaneger.ui
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
