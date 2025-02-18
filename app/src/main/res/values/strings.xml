@@ -11,4 +11,8 @@
     <string name="date_not_set">Date not set</string>
     <string name="enter_description">Enter Description</string>
     <string name="new_task">New Task</string>
+    <string name="sort_by_due_date_default">Sort by Due Date(Default)</string>
+    <string name="sort_by_title">Sort by Title</string>
+    <string name="menu">menu</string>
+    <string name="complete_task">complete task</string>
 </resources>

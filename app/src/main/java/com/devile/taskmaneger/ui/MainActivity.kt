@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), Adapter.HandleClickListener {
 
         taskList = mutableListOf()
         adapter = Adapter(taskList, this)
-        binding.rvLayout.layoutManager = LinearLayoutManager(this)  // Set layout manager
+        binding.rvLayout.layoutManager = LinearLayoutManager(this)
         binding.rvLayout.adapter = adapter
 
         fetchTasks()
@@ -89,12 +89,12 @@ class MainActivity : AppCompatActivity(), Adapter.HandleClickListener {
             }
 
             R.id.sort_by_due_date -> {
-                sortTasksByDueDate()  // Sort by Due Date when selected
+                sortTasksByDueDate()
                 true
             }
 
             R.id.sort_by_title -> {
-                sortTasksByTitle()  // Sort by Title when selected
+                sortTasksByTitle()
                 true
             }
 
@@ -107,7 +107,6 @@ class MainActivity : AppCompatActivity(), Adapter.HandleClickListener {
 
         taskList = taskDao.getUnCompleteTask().toMutableList()
 
-        // Sort tasks by due date
         taskList.sortWith(compareBy { task ->
             try {
                 dateFormat.parse(task.dueDate)
@@ -168,9 +167,9 @@ class MainActivity : AppCompatActivity(), Adapter.HandleClickListener {
         ).show()
     }
 
-    // ✅ Refresh task list when returning from another screen
+
     override fun onResume() {
         super.onResume()
-        fetchTasks()  // Reload tasks on returning to MainActivity
+        fetchTasks()
     }
 }

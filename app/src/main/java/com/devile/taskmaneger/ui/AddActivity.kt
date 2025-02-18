@@ -100,16 +100,16 @@ class AddActivity : AppCompatActivity() {
     private fun formatDate(date: String): String {
         return try {
             val inputFormat =
-                SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) // The format you are displaying
+                SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val outputFormat = SimpleDateFormat(
                 "yyyy-MM-dd",
                 Locale.getDefault()
-            ) // Standard format for storing in DB
+            )
             val parsedDate = inputFormat.parse(date)
-            outputFormat.format(parsedDate ?: Date()) // Format to the new format
+            outputFormat.format(parsedDate ?: Date())
         } catch (e: Exception) {
             e.printStackTrace()
-            date // Return the original date if parsing fails
+            date
         }
     }
 
@@ -122,7 +122,7 @@ class AddActivity : AppCompatActivity() {
 
         DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
             val sdf =
-                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // Store in yyyy-MM-dd format
+                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             calendar.set(selectedYear, selectedMonth, selectedDay)
             selectedDate = sdf.format(calendar.time)
             binding.etDueDate.setText(selectedDate)

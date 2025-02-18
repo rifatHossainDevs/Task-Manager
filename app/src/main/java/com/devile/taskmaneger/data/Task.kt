@@ -19,12 +19,12 @@ data class Task(
 ) : Parcelable {
 
     fun daysLeft(): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // Ensure correct format
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return try {
-            val dueDateObj = sdf.parse(dueDate) // Parse stored date
-            val today = Calendar.getInstance().time // Get today's date
-            val diff = dueDateObj?.time?.minus(today.time) ?: 0 // Difference in milliseconds
-            val days = (diff / (1000 * 60 * 60 * 24)).toInt() // Convert to days
+            val dueDateObj = sdf.parse(dueDate)
+            val today = Calendar.getInstance().time
+            val diff = dueDateObj?.time?.minus(today.time) ?: 0
+            val days = (diff / (1000 * 60 * 60 * 24)).toInt()
 
             when {
                 days > 0 -> "$days days left"

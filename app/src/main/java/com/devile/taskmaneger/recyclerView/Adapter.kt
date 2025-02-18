@@ -43,7 +43,6 @@ class Adapter(private var taskList: MutableList<Task>, val listener: HandleClick
             tvDescription.text = task.description
             tvDueDate.text = task.dueDate
 
-            // Display days left in RecyclerView
             tvLeftDate.text = task.daysLeft()
 
             deleteBtn.setOnClickListener {
@@ -54,7 +53,6 @@ class Adapter(private var taskList: MutableList<Task>, val listener: HandleClick
                 listener.editClickListener(task)
             }
 
-            // Prevent unwanted event triggers
             completionCB.setOnCheckedChangeListener(null)
             completionCB.isChecked = task.completionStatus
 

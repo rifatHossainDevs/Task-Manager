@@ -47,12 +47,12 @@ class CompleteActivity : AppCompatActivity(), Adapter.HandleClickListener {
 
         taskList = taskDao.getCompleteTask().toMutableList()
 
-        // Sort tasks by due date
+
         taskList.sortWith(compareBy { task ->
             try {
-                dateFormat.parse(task.dueDate) // Parse the stored format
+                dateFormat.parse(task.dueDate)
             } catch (e: ParseException) {
-                null // Ignore invalid dates
+                null
             }
         })
 
@@ -78,13 +78,11 @@ class CompleteActivity : AppCompatActivity(), Adapter.HandleClickListener {
 
     @SuppressLint("NotifyDataSetChanged")
     override fun completeClickListener(task: Task, isComplete: Boolean) {
-        // ✅ Update the task's completion status in the database
+
         taskDao.updateCompleteStatus(task.taskId, isComplete)
 
-        // ✅ Remove the task from the completed list
         fetchTasks()
 
-        // ✅ Refresh RecyclerView
         adapter.notifyDataSetChanged()
 
         Toast.makeText(
