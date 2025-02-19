@@ -168,8 +168,5 @@ class MainActivity : AppCompatActivity(), Adapter.HandleClickListener {
     }
 
 
-    override fun onResume() {
-        super.onResume()
-        fetchTasks()
-    }
+
 }
