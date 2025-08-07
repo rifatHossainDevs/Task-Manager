@@ -102,7 +102,7 @@ class AddActivity : AppCompatActivity() {
             val inputFormat =
                 SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val outputFormat = SimpleDateFormat(
-                "yyyy-MM-dd",
+                "dd/MM/yyyy",
                 Locale.getDefault()
             )
             val parsedDate = inputFormat.parse(date)
@@ -122,7 +122,7 @@ class AddActivity : AppCompatActivity() {
 
         DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
             val sdf =
-                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             calendar.set(selectedYear, selectedMonth, selectedDay)
             selectedDate = sdf.format(calendar.time)
             binding.etDueDate.setText(selectedDate)
